@@ -129,9 +129,9 @@ int readnextcolorline()
       printw("%d", i);
       refresh();
       if (nocolors!=i) {
+       nocolors=i;
        tries=0;
       generatecolorcode(); }
-      nocolors=i;
       redrawscreen();
      break;
      case 'r':
