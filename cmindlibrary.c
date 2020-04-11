@@ -25,6 +25,8 @@ int showmessage(int x_pos, int y_pos, const char *message, int keyflag, int colo
   refresh();
   if (keyflag)
    return (getchar());
+  
+ return 0;
 }
 
 
@@ -87,6 +89,9 @@ void showcolorsandpegs(int pegsnumber, int trynumber)
 int readnextcolorline()
 {
   int i, i1, colorpos=0, c;
+  if (tries)
+   for (i=0;i<nocolors;i++)
+    guessedcolors[tries][i]=guessedcolors[tries-1][i];
   showcurrentcolorline(tries);
   gotoxy(2+(colorpos*2), 24);
   refresh();
