@@ -2,7 +2,7 @@
 int cmindengine()
 {
   int i, i1, whitepegs=0, blackpegs=0;
-  
+       
     // award pegs
     // black pegs
     for (i=0;i<nocolors;i++) {
@@ -17,7 +17,7 @@ int cmindengine()
     ++whitepegs; } } }
     // record peg history
     pegshistory[tries][CWHITE]=whitepegs;
-    pegshistory[tries][CBLACK]=blackpegs;    
+    pegshistory[tries][CBLACK]=blackpegs;
 
  return whitepegs+blackpegs;
 }
@@ -27,8 +27,7 @@ void generatecolorcode()
 {
  int i;
  
-  for (i=0;i<nocolors;i++) // colorcode[2] contains generated code and sum of colors
-   colorcode[1][i]=0;
+  // colorcode[2] contains generated code and sum of colors
   for (i=0;i<nocolors;i++) {
    colorcode[0][i]=rand() % nocolors;
   ++colorcode[1][colorcode[0][i]]; }

@@ -77,7 +77,7 @@ void showcolorsandpegs(int pegsnumber, int trynumber)
   for (i=0;i<pegshistory[trynumber][CWHITE];i++)
    addch('w');
   for (i=0;i<pegshistory[trynumber][CBLACK];i++)
-   addch('b');;
+   addch('b');
   if (!pegsnumber)
    printw("zero");
   refresh();
@@ -86,7 +86,7 @@ void showcolorsandpegs(int pegsnumber, int trynumber)
 // read next color line
 int readnextcolorline()
 {
-  int i, colorpos=0, c;
+  int i, i1, colorpos=0, c;
   showcurrentcolorline(tries);
   gotoxy(2+(colorpos*2), 24);
   refresh();
@@ -128,8 +128,9 @@ int readnextcolorline()
        break;
       printw("%d", i);
       refresh();
-      if (nocolors!=i)
+      if (nocolors!=i) {
        tries=0;
+      generatecolorcode(); }
       nocolors=i;
       redrawscreen();
      break;
@@ -142,6 +143,12 @@ int readnextcolorline()
     printw("x");
     gotoxy(2+(colorpos*2), 24);
   refresh(); } }
+  // reset guessedsumcolors array
+  for (i1=0;i1<2;i1++)
+   for (i=0;i<nocolors;i++) // guessedcolors contains currently given code
+    guessedsumcolors[i1][i]=0; // guessedsumcolors[2] contains given pegs from guessed colors and sum of given guessed colors
+  for (i=0;i<nocolors;i++)
+   ++guessedsumcolors[1][guessedcolors[tries][i]];
     
  // return values: 0 next try, 1 exit
  return (c=='\n') ? 0 : 1;
@@ -176,10 +183,10 @@ void revealcode()
 {
   int i;
   
-   showmessage((nocolors*2)+10, 6, "code revealed", 0, 58);
+   showmessage((nocolors*2)+10, 6, "color code", 0, 58);
    for (i=0;i<nocolors;i++) {
     changecolor(colorcode[0][i]+1);
-    gotoxy((nocolors*2)+10+(i*2), 7);
+    gotoxy((nocolors*2)+10+(i*2), 7);   
    addch('x'); }
 }
 

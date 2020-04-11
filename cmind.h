@@ -26,7 +26,7 @@
 
 // variables, classes, structures
 bool reveal=false;
-int colorcode[2][MAXCOLORS], guessedcolors[MAXTRIES][MAXCOLORS]={ -1 }, guessedsumcolors[2][MAXCOLORS]={ 0 }, pegshistory[MAXTRIES][2]={ 0 }, tries=0, nocolors=STANDARDCOLORSNO;
+int colorcode[2][MAXCOLORS], guessedcolors[MAXTRIES][MAXCOLORS]={ 0, 0 }, guessedsumcolors[2][MAXCOLORS]={ 0, 0 }, pegshistory[MAXTRIES][2]={ 0, 0 }, tries=0, nocolors=STANDARDCOLORSNO;
 
 // function definitions
 // cursescreen
@@ -55,5 +55,3 @@ void gotoxy(int x, int y);
 #include "cursesscreen.c"
 #include "cmindengine.c"
 #include "cmindlibrary.c"
-
-
