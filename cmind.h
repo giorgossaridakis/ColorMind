@@ -47,6 +47,7 @@ void showcolorsandpegs(int pegsnumber, int trynumber);
 int readnextcolorline();
 void showcurrentcolorline(int trynunber);
 void redrawscreen();
+void clearline(int line);
 void revealcode();
 int estimatevictory();
 void gotoxy(int x, int y);

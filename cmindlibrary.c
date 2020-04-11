@@ -118,14 +118,18 @@ int readnextcolorline()
       while ((tolower(i=showmessage(1, 24, "reveal code (y/n):", 1, 58)))!=ESC && i!='y' && i!='n');
       addch(i);
       refresh();
-      if (i==ESC)
-       break;
+      if (i==ESC) {
+       clearline(24);
+       showcurrentcolorline(tries);
+      break; }
       if (i=='y')
        reveal=1;
       while ((tolower(i=showmessage(1, 24, "colors/rows number 2..6:", 1, 58)))!=ESC && !isdigit(i));
       i-='0';
-      if (i<MINCOLORS || i>MAXCOLORS)
-       break;
+      if (i<MINCOLORS || i>MAXCOLORS) {
+       clearline(24);
+       showcurrentcolorline(tries);
+      break; }
       printw("%d", i);
       refresh();
       if (nocolors!=i) {
@@ -164,6 +168,18 @@ void redrawscreen()
    for (i=0;i<tries;i++) 
     showcolorsandpegs(pegshistory[i][CWHITE]+pegshistory[i][CBLACK], i);
    showcurrentcolorline(tries);
+}
+
+// clear line
+void clearline(int line)
+{
+  int i=1;
+  
+   changecolor(58);
+   gotoxy(i, line);
+   for (;i<80;i++)
+    addch(SPACE);
+  refresh();
 }
 
 // show current read line

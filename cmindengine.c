@@ -28,6 +28,8 @@ void generatecolorcode()
  int i;
  
   // colorcode[2] contains generated code and sum of colors
+  for (i=0;i<nocolors;i++)
+   colorcode[1][i]=0;
   for (i=0;i<nocolors;i++) {
    colorcode[0][i]=rand() % nocolors;
   ++colorcode[1][colorcode[0][i]]; }
